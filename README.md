@@ -2,16 +2,17 @@
 
 تطبيق ويب للمعلمة: طلاب، حضور وغياب، سبورة بتسجيل صوت وفيديو، وذكاء اصطناعي.
 
-## الخطوة 1: السيرفر الوسيط (Cloudflare Workers - مجاني)
-1. أنشئي حساب على dash.cloudflare.com ثم Workers & Pages ثم Create ثم Worker.
-2. سمّيه `miss-esoo-ai` واضغطي Deploy، ثم Edit code.
-3. امسحي الكود الموجود والصقي محتوى `worker/worker.js` ثم Deploy.
-4. من Settings ثم Variables and Secrets أضيفي:
-   - `ANTHROPIC_API_KEY` (نوع Secret): مفتاحك من console.anthropic.com
-   - `APP_TOKEN` (نوع Secret): أي كلمة طويلة عشوائية، مثال `me-7f3k9x2q8w`
-   - `ALLOWED_ORIGIN` (نوع Text): `https://USERNAME.github.io` (اسم حسابك على GitHub بدون / في الآخر). تطبيق الـ APK مسموح له تلقائياً
-   - `MODEL` (اختياري): `claude-sonnet-5-5`
-5. انسخي رابط الـ Worker، شكله `https://miss-esoo-ai.xxxx.workers.dev`.
+## الخطوة 1: السيرفر الوسيط (Cloudflare Workers - مجاني بالكامل)
+1. أنشئي حساب على dash.cloudflare.com (بدون بطاقة) ثم Workers & Pages ثم Create Worker (قالب Hello World) ثم Deploy.
+2. اضغطي Edit code وامسحي الكود والصقي محتوى `worker/worker.js` ثم Deploy.
+3. من Settings ثم Bindings ثم Add binding ثم Workers AI، واكتبي Variable name: `AI` ثم Deploy.
+4. من Settings ثم Variables and secrets أضيفي:
+   - `APP_TOKEN` (Secret): أي كلمة طويلة عشوائية، مثال `me-7f3k9x2q8w`
+   - `ALLOWED_ORIGIN` (Text): `https://USERNAME.github.io` (اسم حسابك بدون / في الآخر). تطبيق الـ APK مسموح له تلقائياً
+5. انسخي رابط الـ Worker، شكله `https://xxxx.workers.dev`.
+6. (اختياري، مدفوع) للحصول على جودة Claude أعلى: أضيفي `ANTHROPIC_API_KEY` (Secret) وسيستخدمه السيرفر تلقائياً بدل Workers AI.
+
+الحدود المجانية: 100 ألف طلب يومياً للـ Worker، ورصيد Workers AI يومي محدود يتجدد منتصف الليل UTC. جودة النموذج المجاني (خصوصاً بالعربي) أقل من Claude.
 
 ## الخطوة 2: ربط التطبيق
 افتحي `config.js` وعدّلي:
