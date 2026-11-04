@@ -2,6 +2,8 @@ name = "miss-esoo-ai"
 main = "worker.js"
 compatibility_date = "2025-01-01"
 
+[ai]
+binding = "AI"
+
 [vars]
-ALLOWED_ORIGIN = "https://USERNAME.github.io"
-MODEL = "claude-sonnet-5-5"
+ALLOWED_ORIGIN = "https://localhost"
