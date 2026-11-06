@@ -1,4 +1,4 @@
-# Miss Esoo
+# Roqaya
 
 تطبيق ويب للمعلمة: طلاب، حضور وغياب، سبورة بتسجيل صوت وفيديو، وذكاء اصطناعي.
 
@@ -7,7 +7,7 @@
 2. اضغطي Edit code وامسحي الكود والصقي محتوى `worker/worker.js` ثم Deploy.
 3. من Settings ثم Bindings ثم Add binding ثم Workers AI، واكتبي Variable name: `AI` ثم Deploy.
 4. من Settings ثم Variables and secrets أضيفي:
-   - `APP_TOKEN` (Secret): أي كلمة طويلة عشوائية، مثال `me-7f3k9x2q8w`
+   - `APP_TOKEN` (Secret): أي كلمة طويلة عشوائية، مثال `rq-7f3k9x2q8w`
    - `ALLOWED_ORIGIN` (Text): `https://USERNAME.github.io` (اسم حسابك بدون / في الآخر). تطبيق الـ APK مسموح له تلقائياً
 5. انسخي رابط الـ Worker، شكله `https://xxxx.workers.dev`.
 6. (اختياري، مدفوع) للحصول على جودة Claude أعلى: أضيفي `ANTHROPIC_API_KEY` (Secret) وسيستخدمه السيرفر تلقائياً بدل Workers AI.
@@ -17,7 +17,7 @@
 ## الخطوة 2: ربط التطبيق
 افتحي `config.js` وعدّلي:
 ```js
-window.ME_CONFIG = {
+window.APP_CONFIG = {
   proxy: "رابط الـ Worker",
   token: "نفس قيمة APP_TOKEN"
 };
@@ -49,7 +49,7 @@ console.log(r.text);
 ## بناء ملف APK تلقائياً (GitHub Actions)
 1. تأكدي إن المجلد المخفي `.github/workflows/build-apk.yml` اترفع. لو مظهرش بعد الرفع، اعملي Add file ثم Create new file واكتبي الاسم `.github/workflows/build-apk.yml` والصقي محتواه.
 2. من تبويب Actions اختاري Build APK ثم Run workflow (بيشتغل لوحده كمان مع أي رفع جديد).
-3. استني 5 إلى 10 دقايق، افتحي التشغيل الناجح، ومن Artifacts نزّلي `Miss-Esoo-APK` وفكّي الضغط.
+3. استني 5 إلى 10 دقايق، افتحي التشغيل الناجح، ومن Artifacts نزّلي `Roqaya-APK` وفكّي الضغط.
 4. ثبّتي `app-debug.apk` على الموبايل (اسمحي بالتثبيت من مصدر غير معروف).
 
 ملاحظات الـ APK:
@@ -61,6 +61,6 @@ console.log(r.text);
 ## تعديل ALLOWED_ORIGIN من الموبايل
 1. افتحي Chrome ثم القائمة (⋮) وفعّلي "موقع سطح المكتب" (Desktop site).
 2. ادخلي dash.cloudflare.com وسجّلي دخول.
-3. Workers & Pages ثم اضغطي على `miss-esoo-ai`.
+3. Workers & Pages ثم اضغطي على `roqaya-ai`.
 4. Settings ثم Variables and Secrets ثم Edit على `ALLOWED_ORIGIN`.
 5. اكتبي `https://USERNAME.github.io` (اسم حسابك بدل USERNAME) ثم Deploy.
