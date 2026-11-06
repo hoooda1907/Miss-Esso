@@ -34,7 +34,7 @@ jobs:
       - name: Use fixed signing key (so new builds UPDATE the installed app)
         run: |
           mkdir -p ~/.android
-          cp esoo-debug.keystore ~/.android/debug.keystore
+          cp roqaya-debug.keystore ~/.android/debug.keystore
           sed -i "s/versionCode [0-9]*/versionCode ${{ github.run_number }}/" android/app/build.gradle
           grep -n "versionCode" android/app/build.gradle
       - name: Build debug APK
@@ -42,5 +42,5 @@ jobs:
         run: ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
-          name: Miss-Esoo-APK
+          name: Roqaya-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
