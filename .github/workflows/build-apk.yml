@@ -31,6 +31,12 @@ jobs:
           rm -rf android/app/src/main/res/mipmap-anydpi-v26
           python3 scripts/make_icons.py
           sed -i 's#</manifest>#    <uses-permission android:name="android.permission.RECORD_AUDIO" />\n    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />\n</manifest>#' android/app/src/main/AndroidManifest.xml
+      - name: Use fixed signing key (so new builds UPDATE the installed app)
+        run: |
+          mkdir -p ~/.android
+          cp esoo-debug.keystore ~/.android/debug.keystore
+          sed -i "s/versionCode [0-9]*/versionCode ${{ github.run_number }}/" android/app/build.gradle
+          grep -n "versionCode" android/app/build.gradle
       - name: Build debug APK
         working-directory: android
         run: ./gradlew assembleDebug
